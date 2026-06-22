@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再遇见 · hth 页面小记</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8f7f4;
+            color: #1e1c1a;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: #0f0e0c;
+            background-image: radial-gradient(circle at 10% 30%, #2b2823 0%, #0a0908 100%);
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to top, #f8f7f4, transparent);
+            pointer-events: none;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #c4b8a6;
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+
+        .hero-main {
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            font-weight: 350;
+            color: #f0ece4;
+            max-width: 700px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.3;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #a19786;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-meta {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid #3b3730;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            color: #cbbfae;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* 浅色正文区 */
+        .content {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+            background: #f8f7f4;
+            flex: 1;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #2c2824;
+        }
+
+        .intro-text a {
+            color: #b2562b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+
+        .intro-text a:hover {
+            color: #8a3f1e;
+            border-bottom-color: #b2562b;
+        }
+
+        .intro-text p + p {
+            margin-top: 1.2rem;
+        }
+
+        /* 特点卡片区域 —— 用色柔，强调色点缀 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0 2.5rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.4rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eeebe6;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-icon {
+            font-size: 1.6rem;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e1c1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card p {
+            font-size: 0.94rem;
+            color: #5b5650;
+            line-height: 1.5;
+        }
+
+        .feature-card .accent {
+            color: #b2562b;
+        }
+
+        /* 引用 / 提示 */
+        .note-box {
+            background: #f0ece6;
+            border-left: 5px solid #b2562b;
+            padding: 1.6rem 2rem;
+            border-radius: 12px;
+            margin: 2.5rem 0 2.2rem;
+        }
+
+        .note-box p {
+            font-style: normal;
+            color: #2f2a25;
+        }
+
+        .faq-mini {
+            margin-top: 2.8rem;
+            border-top: 1px solid #ddd9d2;
+            padding-top: 2rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            background: #fffcf9;
+            border-radius: 14px;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid #e7e2da;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #2b2721;
+            outline: none;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #b2562b;
+        }
+
+        .faq-mini details p {
+            padding: 0.7rem 0 0.2rem;
+            color: #4d4841;
+            font-size: 0.95rem;
+        }
+
+        .closing {
+            margin: 3rem 0 1.2rem;
+            font-size: 1.05rem;
+            color: #3b3630;
+            border-left: 2px solid #b7ad9e;
+            padding-left: 1.5rem;
+        }
+
+        .closing a {
+            color: #b2562b;
+            border-bottom: 1px solid transparent;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .closing a:hover {
+            border-bottom-color: #b2562b;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #8a8379;
+            margin-top: 2.2rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #e0dad1;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero { min-height: 50vh; padding: 2.5rem 1.2rem; }
+            .hero-main { font-size: 1.8rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .note-box { padding: 1.2rem 1.4rem; }
+            .faq-mini details { padding: 0.6rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图：故事感开场 -->
+    <section class="hero">
+        <div class="hero-tagline">再次停留 · 一点熟悉</div>
+        <h1 class="hero-main">有些页面，值得第二次打开</h1>
+        <p class="hero-sub">不是每一次访问都是初次，收藏夹里总有几个名字，安静地等在那里。</p>
+        <span class="hero-meta">✦ 记一个安静的角落</span>
+    </section>
+
+    <!-- 浅色正文区：承接段落 + 特点 + FAQ 摘要 + 温和结尾 -->
+    <main class="content">
+
+        <div class="intro-text">
+            <p>
+                你或许还记得第一次点开它的原因；也可能只是随手保存，之后再没回过。但慢慢你会发现，有些东西需要重新细看——不是因为它变了，而是因为你有了新的目光。 
+                <a href="https://cn-beta-hth.com">hth</a> 就是这样一个地方：不喧哗，不催促，但每次回来，总有一些细微的更新和熟悉的踏实感。
+            </p>
+            <p>
+                从最初的好奇，到后来偶尔的停留，再到把它放在书签栏的角落——收藏本身也是一种承诺。这里有浏览的节奏，有内容的层次，也有等待被再次发现的细节。
+            </p>
+        </div>
+
+        <!-- 特点列表：卡片风格，强调色点缀 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📌</div>
+                <h3>保持关注的习惯</h3>
+                <p>偶尔回访，看看板块与信息的流变，比想象中更有意思。没有强推送，适合自己把握节奏。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧩</div>
+                <h3>内容温和递进</h3>
+                <p>布局与条目清晰，不会一下子塞满太多。适合慢慢阅读，也适合偶尔跳转，总有一部分是熟悉的。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔖</div>
+                <h3>书签里的老朋友</h3>
+                <p>收藏夹里那些偶尔会点开的链接，往往最经得起时间。<span class="accent">hth</span> 就是其中之一。</p>
+            </div>
+        </div>
+
+        <!-- 温和提示，类似小段落 -->
+        <div class="note-box">
+            <p>📎 提示：如果你已经有一阵子没回来，不妨在有空时重新看看。页面里有些区域会随着阶段微调，但整体的安静气质不会变。收藏意味着你曾觉得它值得，再打开一次也不会失望。</p>
+        </div>
+
+        <!-- FAQ 摘要：两个常见问题，温和口吻 -->
+        <div class="faq-mini">
+            <details>
+                <summary>我上次来还是几个月前，内容变化大吗？</summary>
+                <p>整体框架保持稳定，部分版块和条目会梳理更新。不会有突兀的改动，你仍能找到之前熟悉的结构，同时留意到一些新的细节。</p>
+            </details>
+            <details>
+                <summary>需要注册或登录才能继续关注吗？</summary>
+                <p>浏览和回访都不受限制。收藏夹里的 <a href="https://cn-beta-hth.com" style="color:#b2562b; text-decoration:none; border-bottom:1px solid transparent;">hth</a> 随时可以打开，不需要额外步骤。关注，只是你个人的习惯。</p>
+            </details>
+        </div>
+
+        <!-- 温和结尾，再次嵌入链接 -->
+        <div class="closing">
+            <p>有时我们收藏一个页面，不只是为了记住地址，更是为了保留一种重新相遇的可能。<br>
+            下次再想起的时候，直接打开 <a href="https://cn-beta-hth.com">hth</a> 就好——它还在那里，和你上次离开时差不多，又或许有一点点不一样。</p>
+        </div>
+
+        <div class="footnote">
+            <p>慢慢来，不着急。收藏夹里总有位置。</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
