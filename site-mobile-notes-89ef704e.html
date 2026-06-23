@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+  <title>MK体育 · 运动视野</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f9fc;
+      color: #1a2e3b;
+      line-height: 1.65;
+      padding: 1.2rem 1rem 2.5rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    /* header / 横幅区 */
+    .hero {
+      background: linear-gradient(145deg, #edf7fa 0%, #d9eef5 100%);
+      border-radius: 32px;
+      padding: 2.2rem 1.8rem 2rem;
+      margin-bottom: 2.4rem;
+      box-shadow: 0 8px 20px rgba(37, 99, 108, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(53, 169, 173, 0.08) 0%, transparent 70%);
+      top: -30px;
+      right: -40px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      color: #0b3b44;
+    }
+    .hero .sub {
+      font-size: 1.1rem;
+      font-weight: 340;
+      color: #346c7a;
+      border-left: 4px solid #3d9aa5;
+      padding-left: 1rem;
+    }
+    .hero .tagline {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      font-size: 0.95rem;
+      color: #205b68;
+    }
+    .hero .tagline span {
+      background: rgba(60, 145, 158, 0.12);
+      padding: 0.2rem 1rem 0.25rem;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+    /* 卡片网格 */
+    .grid-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.6rem 1.5rem;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 4px 12px rgba(28, 80, 88, 0.04);
+      transition: box-shadow 0.2s;
+      border: 1px solid #e0f0f3;
+    }
+    .grid-card:hover {
+      box-shadow: 0 6px 18px rgba(37, 99, 108, 0.07);
+    }
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      font-weight: 540;
+      color: #0c4b58;
+    }
+    .card-title i {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: #3d9aa5;
+      border-radius: 12px;
+      color: white;
+      font-style: normal;
+      text-align: center;
+      line-height: 28px;
+      font-size: 1rem;
+    }
+    .grid-card p {
+      margin-bottom: 0.9rem;
+      color: #1e4350;
+    }
+    .grid-card p:last-child {
+      margin-bottom: 0;
+    }
+    .highlight {
+      background: #e7f3f7;
+      padding: 0.1rem 0.4rem;
+      border-radius: 6px;
+      color: #13626e;
+      font-weight: 420;
+    }
+    /* 混合背景介绍 */
+    .context-block {
+      background: #e4f2f7;
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      margin-bottom: 2rem;
+      border-left: 6px solid #3d9aa5;
+    }
+    .context-block h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #06323d;
+    }
+    .context-block p {
+      margin-bottom: 0.8rem;
+    }
+    .context-block p:last-of-type {
+      margin-bottom: 0;
+    }
+    /* 附录 / FAQ 摘要 */
+    .faq-mini {
+      background: #fafdfe;
+      border-radius: 24px;
+      padding: 1.4rem 1.5rem;
+      margin: 2rem 0 1.6rem;
+      border: 1px solid #cce3e9;
+    }
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px dashed #cfe4ea;
+      padding-bottom: 0.6rem;
+    }
+    .faq-mini details:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .faq-mini summary {
+      font-weight: 530;
+      color: #115966;
+      cursor: pointer;
+      padding: 0.3rem 0;
+    }
+    .faq-mini summary::marker {
+      color: #3d9aa5;
+    }
+    .faq-mini .answer {
+      padding: 0.4rem 0 0.2rem 1rem;
+      color: #2f5d6b;
+      font-size: 0.95rem;
+    }
+    /* 页尾 */
+    .footer-note {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #cde1e7;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #3f717e;
+    }
+    .footer-note p {
+      margin-bottom: 0.3rem;
+    }
+    .footer-note a {
+      color: #1b7483;
+      text-decoration: none;
+      border-bottom: 1px dotted #3d9aa5;
+      font-weight: 440;
+    }
+    .footer-note a:hover {
+      border-bottom: 2px solid #3d9aa5;
+    }
+    /* 响应式 */
+    @media (max-width: 500px) {
+      body {
+        padding: 0.8rem 0.7rem 2rem;
+      }
+      .hero {
+        padding: 1.6rem 1.2rem 1.8rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .grid-card {
+        padding: 1.3rem 1rem;
+      }
+      .context-block {
+        padding: 1.4rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- 首页横幅 -->
+  <div class="hero">
+    <h1>运动查询·对照·延伸</h1>
+    <div class="sub">从日常信息出发，梳理赛事与训练脉络</div>
+    <div class="tagline">
+      <span>⚡ 实时赛况</span>
+      <span>📋 数据对照</span>
+      <span>📎 延伸阅读</span>
+      <span>🧩 专题笔记</span>
+    </div>
+  </div>
+
+  <!-- 背景说明：轻杂志风格 -->
+  <div class="context-block">
+    <h2>一本可以翻阅的运动档案</h2>
+    <p>我们习惯在手机端快速查比分、看阵容，也常需要把几场比赛放在一起对照节奏和战术变化。<span class="highlight">MK体育</span>正好提供了这样一种聚合视角——既能看到即时信息，也适合安静地做点延伸功课。</p>
+    <p>这份页面就像一本随手杂志：首页横幅记录当前焦点，下面三篇卡片分别对应查询、对照、延伸三个日常动作；不需要复杂的搜索路径，打开就能跟上节奏。</p>
+  </div>
+
+  <!-- 三段自然介绍 (网格卡片) -->
+  <div class="grid-card">
+    <div class="card-title"><i>❶</i> 日常查询 · 轻量而清晰</div>
+    <p>大部分时候我们只想快速了解某场比赛的时间、地点或关键球员。在 <a href="https://site-mobile-mksports.com" style="color:#1b7483;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#3d9aa5;">MK体育</a> 的移动界面里，赛程和积分都按日期排列，滑动即可浏览。没有冗余弹窗，也不强制注册，适合零碎的查讯需求。</p>
+    <p>如果你同时关注两三项运动，首页的自定义关注栏可以并列显示，不用反复切换页面。</p>
+  </div>
+
+  <div class="grid-card">
+    <div class="card-title"><i>❷</i> 数据对照 · 横纵皆可</div>
+    <p>看球或者分析训练数据时，单单一个数字往往不够。我喜欢把主客场的控球率、射正次数、跑动距离放在同一屏内对比。而<a href="https://site-mobile-mksports.com" style="color:#1b7483;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#3d9aa5;">MK体育</a>的统计卡片把基础数据与进阶指标（比如预期进球、压迫强度）放在相邻区块，一眼就能看出趋势。</p>
+    <p>更贴心的是，它预设了几组常见对照模板（例如「主客场表现」「近五场走势」），省去自己拼表格的时间。</p>
+  </div>
+
+  <div class="grid-card">
+    <div class="card-title"><i>❸</i> 延伸阅读 · 从赛果到背景</div>
+    <p>一场比赛结束，往往想了解背后的战术布置或历史交锋记录。MK体育的内容区会在赛果下方自动关联相关的战报、教练采访摘要和相似对阵回顾。这种延伸不打断浏览，恰好满足那种「再了解一下」的好奇心。</p>
+    <p>另外，专题页面会定期更新「战术笔记」和「运动科学短篇」，读起来像杂志专栏，适合通勤时翻阅。</p>
+  </div>
+
+  <!-- FAQ 摘要 (轻量杂志附录) -->
+  <div class="faq-mini">
+    <h3 style="font-weight:500; margin-bottom:0.8rem; color:#0b4c5a;">📌 常见疑问摘要</h3>
+    <details>
+      <summary>移动端浏览体验如何？</summary>
+      <div class="answer">页面针对手机竖屏优化，按钮大小适中，卡片间距舒适；支持深色模式跟随系统。所有核心操作在单手可及范围内。</div>
+    </details>
+    <details>
+      <summary>数据更新频率怎样？</summary>
+      <div class="answer">实时赛事数据延迟通常在 30 秒以内；赛后统计、文章类内容完赛后 5–10 分钟更新。对照数据每日自动刷新。</div>
+    </details>
+    <details>
+      <summary>可以只看某个联赛的专题吗？</summary>
+      <div class="answer">可以。首页联赛筛选器支持单独订阅，之后信息流会优先展示该联赛的赛程、数据及延伸内容，同时保留全局热点。</div>
+    </details>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p>本页由运动查询爱好者整理，内容取材自日常浏览习惯。如果你想从更系统的角度获取赛事信息与对照数据，可以随时打开 <a href="https://site-mobile-mksports.com">MK体育</a> 看看当天的赛程和专题。</p>
+    <p style="margin-top:0.6rem; font-size:0.85rem; color:#5c8593;">—— 一份轻巧的杂志式运动档案 · 移动端优先 ——</p>
+  </div>
+</div>
+</body>
+</html>
